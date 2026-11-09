@@ -1,0 +1,617 @@
+{
+  "categories": {
+    "1": "Gender",
+    "2": "Community and Religion",
+    "3": "Jewish Ethnic Background",
+    "4": "Religious Observance",
+    "5": "Language of Origin",
+    "6": "Source",
+    "7": "Meaning and Theme",
+    "8": "Popularity",
+    "9": "Era",
+    "10": "Length and Form",
+    "11": "Nicknames and Variants",
+    "12": "Pronunciation and International Use",
+    "13": "Tradition and Customs",
+    "14": "Style and Feel",
+    "15": "Cultural Associations"
+  },
+  "labels": {
+    "1": {
+      "name": "Male",
+      "category": 1
+    },
+    "2": {
+      "name": "Female",
+      "category": 1
+    },
+    "3": {
+      "name": "Unisex",
+      "category": 1
+    },
+    "4": {
+      "name": "Mostly Male",
+      "category": 1
+    },
+    "5": {
+      "name": "Mostly Female",
+      "category": 1
+    },
+    "6": {
+      "name": "Has Gender Pair",
+      "category": 1
+    },
+    "7": {
+      "name": "Jewish",
+      "category": 2
+    },
+    "8": {
+      "name": "Arab Muslim",
+      "category": 2
+    },
+    "9": {
+      "name": "Arab Christian",
+      "category": 2
+    },
+    "10": {
+      "name": "Druze",
+      "category": 2
+    },
+    "11": {
+      "name": "Bedouin",
+      "category": 2
+    },
+    "12": {
+      "name": "Circassian",
+      "category": 2
+    },
+    "13": {
+      "name": "Shared Across Communities",
+      "category": 2
+    },
+    "14": {
+      "name": "Ashkenazi",
+      "category": 3
+    },
+    "15": {
+      "name": "Sephardi",
+      "category": 3
+    },
+    "16": {
+      "name": "Mizrahi",
+      "category": 3
+    },
+    "17": {
+      "name": "Iraqi",
+      "category": 3
+    },
+    "18": {
+      "name": "Moroccan",
+      "category": 3
+    },
+    "19": {
+      "name": "Persian",
+      "category": 3
+    },
+    "20": {
+      "name": "Kurdish",
+      "category": 3
+    },
+    "21": {
+      "name": "Yemenite",
+      "category": 3
+    },
+    "22": {
+      "name": "Ethiopian",
+      "category": 3
+    },
+    "23": {
+      "name": "Russian-Speaking",
+      "category": 3
+    },
+    "24": {
+      "name": "Bukharan",
+      "category": 3
+    },
+    "25": {
+      "name": "Georgian",
+      "category": 3
+    },
+    "26": {
+      "name": "Anglo",
+      "category": 3
+    },
+    "27": {
+      "name": "Pan-Israeli",
+      "category": 3
+    },
+    "28": {
+      "name": "Secular",
+      "category": 4
+    },
+    "29": {
+      "name": "Traditional",
+      "category": 4
+    },
+    "30": {
+      "name": "Religious Zionist",
+      "category": 4
+    },
+    "31": {
+      "name": "Haredi",
+      "category": 4
+    },
+    "32": {
+      "name": "Hasidic",
+      "category": 4
+    },
+    "33": {
+      "name": "Neutral",
+      "category": 4
+    },
+    "34": {
+      "name": "Biblical Hebrew",
+      "category": 5
+    },
+    "35": {
+      "name": "Modern Hebrew",
+      "category": 5
+    },
+    "36": {
+      "name": "Aramaic",
+      "category": 5
+    },
+    "37": {
+      "name": "Yiddish",
+      "category": 5
+    },
+    "38": {
+      "name": "Ladino",
+      "category": 5
+    },
+    "39": {
+      "name": "Judeo-Arabic",
+      "category": 5
+    },
+    "40": {
+      "name": "Arabic",
+      "category": 5
+    },
+    "41": {
+      "name": "Amharic",
+      "category": 5
+    },
+    "42": {
+      "name": "Persian",
+      "category": 5
+    },
+    "43": {
+      "name": "Greek",
+      "category": 5
+    },
+    "44": {
+      "name": "Latin",
+      "category": 5
+    },
+    "45": {
+      "name": "Russian",
+      "category": 5
+    },
+    "46": {
+      "name": "English",
+      "category": 5
+    },
+    "47": {
+      "name": "International",
+      "category": 5
+    },
+    "48": {
+      "name": "Biblical",
+      "category": 6
+    },
+    "49": {
+      "name": "Torah",
+      "category": 6
+    },
+    "50": {
+      "name": "Prophets",
+      "category": 6
+    },
+    "51": {
+      "name": "Writings",
+      "category": 6
+    },
+    "52": {
+      "name": "Mishnaic",
+      "category": 6
+    },
+    "53": {
+      "name": "Talmudic",
+      "category": 6
+    },
+    "54": {
+      "name": "Rabbinic",
+      "category": 6
+    },
+    "55": {
+      "name": "Zionist Era",
+      "category": 6
+    },
+    "56": {
+      "name": "Hebrew Word",
+      "category": 6
+    },
+    "57": {
+      "name": "Place Name",
+      "category": 6
+    },
+    "58": {
+      "name": "Surname as First Name",
+      "category": 6
+    },
+    "59": {
+      "name": "Hebraized",
+      "category": 6
+    },
+    "60": {
+      "name": "Nature",
+      "category": 7
+    },
+    "61": {
+      "name": "Flower",
+      "category": 7
+    },
+    "62": {
+      "name": "Plant",
+      "category": 7
+    },
+    "63": {
+      "name": "Tree",
+      "category": 7
+    },
+    "64": {
+      "name": "Animal",
+      "category": 7
+    },
+    "65": {
+      "name": "Bird",
+      "category": 7
+    },
+    "66": {
+      "name": "Light",
+      "category": 7
+    },
+    "67": {
+      "name": "Celestial",
+      "category": 7
+    },
+    "68": {
+      "name": "Water",
+      "category": 7
+    },
+    "69": {
+      "name": "Weather",
+      "category": 7
+    },
+    "70": {
+      "name": "Land",
+      "category": 7
+    },
+    "71": {
+      "name": "Theophoric",
+      "category": 7
+    },
+    "72": {
+      "name": "Peace",
+      "category": 7
+    },
+    "73": {
+      "name": "Joy",
+      "category": 7
+    },
+    "74": {
+      "name": "Strength",
+      "category": 7
+    },
+    "75": {
+      "name": "Gift",
+      "category": 7
+    },
+    "76": {
+      "name": "Life",
+      "category": 7
+    },
+    "77": {
+      "name": "Virtue",
+      "category": 7
+    },
+    "78": {
+      "name": "Beauty",
+      "category": 7
+    },
+    "79": {
+      "name": "Music",
+      "category": 7
+    },
+    "80": {
+      "name": "Gemstone",
+      "category": 7
+    },
+    "81": {
+      "name": "Holiday",
+      "category": 7
+    },
+    "82": {
+      "name": "Season",
+      "category": 7
+    },
+    "83": {
+      "name": "Colour",
+      "category": 7
+    },
+    "84": {
+      "name": "Heroic",
+      "category": 7
+    },
+    "85": {
+      "name": "Top 10",
+      "category": 8
+    },
+    "86": {
+      "name": "Top 100",
+      "category": 8
+    },
+    "87": {
+      "name": "Popular",
+      "category": 8
+    },
+    "88": {
+      "name": "Rising",
+      "category": 8
+    },
+    "89": {
+      "name": "Declining",
+      "category": 8
+    },
+    "90": {
+      "name": "Classic",
+      "category": 8
+    },
+    "91": {
+      "name": "Rare",
+      "category": 8
+    },
+    "92": {
+      "name": "Unique",
+      "category": 8
+    },
+    "93": {
+      "name": "Vintage",
+      "category": 8
+    },
+    "94": {
+      "name": "Revival",
+      "category": 8
+    },
+    "95": {
+      "name": "Pioneer Era",
+      "category": 9
+    },
+    "96": {
+      "name": "1950s-1960s",
+      "category": 9
+    },
+    "97": {
+      "name": "1970s-1980s",
+      "category": 9
+    },
+    "98": {
+      "name": "1990s-2000s",
+      "category": 9
+    },
+    "99": {
+      "name": "2010s",
+      "category": 9
+    },
+    "100": {
+      "name": "2020s",
+      "category": 9
+    },
+    "101": {
+      "name": "Grandparent Generation",
+      "category": 9
+    },
+    "102": {
+      "name": "Short",
+      "category": 10
+    },
+    "103": {
+      "name": "Medium",
+      "category": 10
+    },
+    "104": {
+      "name": "Long",
+      "category": 10
+    },
+    "105": {
+      "name": "One Syllable",
+      "category": 10
+    },
+    "106": {
+      "name": "Two Syllables",
+      "category": 10
+    },
+    "107": {
+      "name": "Three Plus Syllables",
+      "category": 10
+    },
+    "108": {
+      "name": "Compound",
+      "category": 10
+    },
+    "109": {
+      "name": "Ends in -el",
+      "category": 10
+    },
+    "110": {
+      "name": "Ends in -ya",
+      "category": 10
+    },
+    "111": {
+      "name": "Ends in -it",
+      "category": 10
+    },
+    "112": {
+      "name": "Ends in -i",
+      "category": 10
+    },
+    "113": {
+      "name": "Ends in -a",
+      "category": 10
+    },
+    "114": {
+      "name": "Ends in -on",
+      "category": 10
+    },
+    "115": {
+      "name": "Stress on Last Syllable",
+      "category": 10
+    },
+    "116": {
+      "name": "Stress on Second to Last Syllable",
+      "category": 10
+    },
+    "117": {
+      "name": "Has Nickname",
+      "category": 11
+    },
+    "118": {
+      "name": "Is Nickname",
+      "category": 11
+    },
+    "119": {
+      "name": "Multiple Hebrew Spellings",
+      "category": 11
+    },
+    "120": {
+      "name": "Multiple English Spellings",
+      "category": 11
+    },
+    "121": {
+      "name": "Has Related Names",
+      "category": 11
+    },
+    "122": {
+      "name": "Easy Abroad",
+      "category": 12
+    },
+    "123": {
+      "name": "Hard Abroad",
+      "category": 12
+    },
+    "124": {
+      "name": "Contains Guttural Sounds",
+      "category": 12
+    },
+    "125": {
+      "name": "Works in English",
+      "category": 12
+    },
+    "126": {
+      "name": "Different Meaning in Other Language",
+      "category": 12
+    },
+    "127": {
+      "name": "Same in Hebrew and Arabic",
+      "category": 12
+    },
+    "128": {
+      "name": "Named After Deceased Relative",
+      "category": 13
+    },
+    "129": {
+      "name": "Named After Living Grandparent",
+      "category": 13
+    },
+    "130": {
+      "name": "Protective Name",
+      "category": 13
+    },
+    "131": {
+      "name": "Holiday Name",
+      "category": 13
+    },
+    "132": {
+      "name": "Common in Double Names",
+      "category": 13
+    },
+    "133": {
+      "name": "Twin Name",
+      "category": 13
+    },
+    "134": {
+      "name": "Sibling Set Name",
+      "category": 13
+    },
+    "135": {
+      "name": "Modern",
+      "category": 14
+    },
+    "136": {
+      "name": "Trendy",
+      "category": 14
+    },
+    "137": {
+      "name": "Traditional",
+      "category": 14
+    },
+    "138": {
+      "name": "Elegant",
+      "category": 14
+    },
+    "139": {
+      "name": "Soft",
+      "category": 14
+    },
+    "140": {
+      "name": "Strong",
+      "category": 14
+    },
+    "141": {
+      "name": "Playful",
+      "category": 14
+    },
+    "142": {
+      "name": "Nature Vibe",
+      "category": 14
+    },
+    "143": {
+      "name": "International",
+      "category": 14
+    },
+    "144": {
+      "name": "Distinctly Israeli",
+      "category": 14
+    },
+    "145": {
+      "name": "Famous Bearer",
+      "category": 15
+    },
+    "146": {
+      "name": "Positive Biblical Character",
+      "category": 15
+    },
+    "147": {
+      "name": "Complex Biblical Character",
+      "category": 15
+    },
+    "148": {
+      "name": "Politically Associated",
+      "category": 15
+    },
+    "149": {
+      "name": "Everyday Word",
+      "category": 15
+    }
+  }
+}
