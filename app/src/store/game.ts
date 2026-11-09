@@ -10,6 +10,7 @@ import {
   type Pool,
   type QuickGame,
 } from '../game/quickMode';
+import { useSaved } from './saved';
 
 interface GameState {
   pool: Pool | null;
@@ -29,12 +30,24 @@ export const useGame = create<GameState>()((set, get) => ({
   game: null,
   timedOut: false,
   start: (names, gender, community) => {
-    const pool = buildPool(names, gender, community);
+    // the user's saved names never appear in the steps
+    const saved = new Set(useSaved.getState().names);
+    const pool = buildPool(
+      names,
+      gender,
+      community,
+      names.filter((n) => saved.has(n.he)),
+    );
     set({ pool, game: startGame(pool, Math.random), timedOut: false });
   },
   select: (id) => {
     const { pool, game } = get();
-    if (pool && game) set({ game: selectName(game, pool, id, Math.random), timedOut: false });
+    if (!pool || !game) return;
+    const next = selectName(game, pool, id, Math.random);
+    set({ game: next, timedOut: false });
+    // a winner is saved automatically while there is room; when the list is full the winner screen offers a swap
+    const winner = next.done && !game.done ? pool.byId.get(id) : undefined;
+    if (winner) useSaved.getState().add(winner.he);
   },
   timeout: () => {
     const { pool, game } = get();

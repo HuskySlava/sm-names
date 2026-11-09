@@ -1,0 +1,104 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.head h2 {
+  font-size: var(--text-l);
+  font-weight: 500;
+}
+
+.count {
+  color: var(--muted);
+  font-size: var(--text-s);
+  font-variant-numeric: tabular-nums;
+}
+
+.prompt {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-m);
+  background: var(--accent-soft);
+}
+
+.prompt strong {
+  color: var(--accent);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-s);
+}
+
+.list li:nth-child(odd) {
+  background: color-mix(in srgb, var(--surface-2) 50%, transparent);
+}
+
+.list li.new {
+  background: var(--accent-soft);
+}
+
+.index {
+  width: 1.5em;
+  color: var(--muted);
+  font-size: var(--text-s);
+  font-variant-numeric: tabular-nums;
+}
+
+.name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.badge {
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--text-s);
+}
+
+.replace {
+  min-height: 36px;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: var(--text-s);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.replace:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.hint {
+  color: var(--muted);
+  font-size: var(--text-s);
+}

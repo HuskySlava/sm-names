@@ -3,9 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { Navigate, useNavigate } from 'react-router';
 import { Button } from '../components/Button';
 import { NameText } from '../components/NameText';
+import { SavedNames } from '../components/SavedNames';
 import { topLabels, winnerOf } from '../game/quickMode';
+import { MAX_SAVED } from '../game/savedNames';
 import { useData } from '../store/data';
 import { useGame } from '../store/game';
+import { useSaved } from '../store/saved';
 import { useSettings } from '../store/settings';
 import styles from './QuickWinner.module.css';
 
@@ -15,6 +18,7 @@ export function QuickWinner() {
   const { game, pool, start } = useGame();
   const { names, labels } = useData();
   const { lang, gender, community } = useSettings();
+  const saved = useSaved((s) => s.names);
 
   // a new game was started (e.g. Restart): go play it
   if (game && !game.done) return <Navigate to="/quick/play" replace />;
@@ -23,6 +27,8 @@ export function QuickWinner() {
   if (!game || !pool || !winner) return <Navigate to="/quick" replace />;
 
   const other = lang === 'he' ? winner.en[0] : winner.he;
+  const isSaved = saved.includes(winner.he);
+  const listFull = saved.length >= MAX_SAVED;
   // the redirect above then moves to the play screen
   const restart = () => start(names, gender ?? 'any', community ?? 'any');
 
@@ -56,6 +62,11 @@ export function QuickWinner() {
           {t('winner.changeGender')}
         </Button>
       </div>
+
+      <SavedNames
+        highlight={isSaved ? winner.he : undefined}
+        replaceWith={!isSaved && listFull ? winner : undefined}
+      />
 
       {labels && (
         <section className={styles.card}>

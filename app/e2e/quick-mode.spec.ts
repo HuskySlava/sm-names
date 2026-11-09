@@ -16,8 +16,10 @@ async function startGame(
 ) {
   await page.getByTestId('mode-quick').click();
   await page.getByTestId(`gender-${gender}`).click();
-  // Start stays disabled until a community is chosen too
-  await expect(page.getByTestId('start')).toBeDisabled();
+  // Start stays disabled until a community is chosen too (choices are remembered between games)
+  if ((await page.locator('[data-testid^="community-"][aria-checked="true"]').count()) === 0) {
+    await expect(page.getByTestId('start')).toBeDisabled();
+  }
   await page.getByTestId(`community-${community}`).click();
   await page.getByTestId(`difficulty-${difficulty}`).click();
   await expectNoSideScroll(page);
@@ -125,4 +127,55 @@ test('skip shows 3 new names on the same step, like when time runs out', async (
   expect(after.some((n) => before.includes(n))).toBe(false);
   await expect(page.getByTestId('step')).toHaveAttribute('data-step', '2');
   await expect(page.getByText('נגמר הזמן! הנה שמות חדשים.')).toHaveCount(0);
+});
+
+test('the winner is saved, and saved names never appear in the game', async ({ page }) => {
+  await page.goto('/');
+  await startGame(page, 'any', 'easy');
+  await playToWinner(page);
+  const winner = (await page.getByTestId('winner-name').textContent())!;
+  const saved = page.getByTestId('saved-name');
+  await expect(saved).toHaveCount(1);
+  await expect(saved.first()).toHaveAttribute('data-he', winner);
+
+  // the saved list shows on the home page too, and survives a reload
+  await page.goto('/');
+  await page.reload();
+  await expect(page.getByTestId('saved-name')).toHaveCount(1);
+
+  // a new game never shows the saved name
+  await startGame(page, 'any', 'easy');
+  for (let step = 1; step <= 10; step++) {
+    await expect(page.getByTestId('step')).toHaveAttribute('data-step', String(step));
+    const cards = page.getByTestId('name-card');
+    await expect(cards).toHaveCount(3);
+    expect(await cards.locator('bdi').allTextContents()).not.toContain(winner);
+    await cards.first().click();
+  }
+});
+
+test('when the list is full, the winner can replace a saved name', async ({ page }) => {
+  // start with a full list of 10 names that are not in the "boy / Jewish" game
+  const full = ['נועה', 'שרה', 'מרים', 'אסתר', 'רחל', 'יעל', 'מיכל', 'תמר', 'חנה', 'רבקה'];
+  await page.addInitScript((names) => {
+    if (!localStorage.getItem('sm-names-saved')) {
+      localStorage.setItem('sm-names-saved', JSON.stringify({ state: { names }, version: 0 }));
+    }
+  }, full);
+  await page.goto('/');
+  await startGame(page, 'boy', 'easy', 'jewish');
+  await playToWinner(page);
+  const winner = (await page.getByTestId('winner-name').textContent())!;
+
+  await expect(page.getByTestId('replace-prompt')).toBeVisible();
+  await expect(page.getByTestId('saved-name')).toHaveCount(10);
+  await page.getByTestId('replace').nth(2).click();
+
+  await expect(page.getByTestId('replace-prompt')).toHaveCount(0);
+  await expect(page.getByTestId('saved-name')).toHaveCount(10);
+  await expect(page.getByTestId('saved-name').nth(2)).toHaveAttribute('data-he', winner);
+  await page.reload();
+  await page.goto('/');
+  await expect(page.getByTestId('saved-name').nth(2)).toHaveAttribute('data-he', winner);
+  await expect(page.locator('[data-he="מרים"]')).toHaveCount(0);
 });

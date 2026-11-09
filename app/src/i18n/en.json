@@ -65,5 +65,13 @@
     "stepN": "Step {{step}}",
     "restart": "Restart",
     "changeGender": "Change gender"
+  },
+  "saved": {
+    "title": "Your names",
+    "count": "{{n}} of {{max}}",
+    "new": "New",
+    "fullPrompt": "Your list is full. Replace one of your names with:",
+    "replace": "Replace",
+    "hint": "Saved names won't appear in the game again."
   }
 }

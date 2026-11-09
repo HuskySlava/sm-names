@@ -85,8 +85,18 @@ export function nameKey(name: NameEntry): string {
   return (name.en[0] ?? '').toLowerCase().replace(/[^a-z]/g, '') || name.he;
 }
 
-export function buildPool(all: NameEntry[], gender: Gender, community: Community): Pool {
-  const names = filterNames(all, gender, community);
+/**
+ * @param skip names that must not appear at all (e.g. the user's saved names); other spellings of them
+ * (same English spelling) are left out too
+ */
+export function buildPool(
+  all: NameEntry[],
+  gender: Gender,
+  community: Community,
+  skip: NameEntry[] = [],
+): Pool {
+  const skipKeys = new Set(skip.map(nameKey));
+  const names = filterNames(all, gender, community).filter((n) => !skipKeys.has(nameKey(n)));
   const counts = new Map<number, number>();
   for (const n of names) for (const l of n.labels) counts.set(l, (counts.get(l) ?? 0) + 1);
   const cap = Math.log(Math.max(2, names.length / WEIGHT_CAP_MIN_NAMES));

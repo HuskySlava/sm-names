@@ -59,6 +59,16 @@ describe('buildPool', () => {
     expect(jewish.names.length + arab.names.length).toBeGreaterThanOrEqual(names.length);
   });
 
+  it('leaves out skipped names and other spellings of them', () => {
+    const luna = names.filter((n) => n.en[0] === 'Luna');
+    const david = names.find((n) => n.he === 'דוד')!;
+    const pool = buildPool(names, 'any', 'any', [luna[0], david]);
+    expect(luna.length).toBeGreaterThan(1);
+    expect(luna.some((n) => pool.byId.has(n.id))).toBe(false);
+    expect(pool.byId.has(david.id)).toBe(false);
+    expect(pool.names.length).toBe(names.length - luna.length - 1);
+  });
+
   it('gives rarer labels more weight, with a cap', () => {
     const pool = buildPool(names, 'any', 'any');
     const count = (l: number) => pool.names.filter((n) => n.labels.includes(l)).length;

@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import { SavedNames } from '../components/SavedNames';
+import { useSaved } from '../store/saved';
 import styles from './Home.module.css';
 
 export function Home() {
   const { t } = useTranslation();
+  const hasSaved = useSaved((s) => s.names.length > 0);
   return (
     <div className={styles.home}>
       <section className={styles.hero}>
@@ -27,6 +30,7 @@ export function Home() {
           <p>{t('home.moreText')}</p>
         </div>
       </div>
+      {hasSaved && <SavedNames />}
     </div>
   );
 }
