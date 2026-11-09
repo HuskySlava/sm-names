@@ -616,7 +616,7 @@ load()
   .catch((err) => {
     console.error(err);
     $('#view').innerHTML = `<div class="loading" style="text-align:start"><h2>${t.loadError}</h2><p class="muted">${esc(err.message)}</p>
-      <p>${t.serverHint}</p><pre>python3 -m http.server 8000</pre><p>${t.then} <a href="http://localhost:8000" style="color:var(--accent)">http://localhost:8000</a></p></div>`;
+      <p>${t.serverHint}</p><pre>npx serve</pre><p>${t.then} <a href="http://localhost:3000" style="color:var(--accent)">http://localhost:3000</a></p></div>`;
   });
 </script>
 </body>

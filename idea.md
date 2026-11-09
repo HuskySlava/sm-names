@@ -77,5 +77,6 @@ The user finds their preferred name in 10 steps.
 2. RTL layout support when Hebrew is active.
 3. Mobile-first, fully responsive design.
 4. A consistent visual style across all screens.
-5. A dark/light theme toggle, defaulting to the system preference.
+5. A consistent code style across all codebase.
+6. A dark/light theme toggle, defaulting to the system preference.
 
