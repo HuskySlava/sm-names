@@ -24,6 +24,16 @@ The data and labels are done. The next step is the real app (see `idea.md`).
   - AI agents: meaning, origin, style, and the rest. They are shared by all spellings of a name.
 - Label ids must never change. New labels get the next free id.
 
+## The app (`app/`)
+
+React + TypeScript + Vite. Quick Mode is built; mode 2 is "coming soon".
+
+- `npm run dev` starts it (http://localhost:5173). `npm test` runs the unit tests, `npm run test:e2e` the browser tests (Playwright, using the installed Google Chrome), `npm run lint` / `npm run format` check the code style, `npm run build` makes the static site in `app/dist/`.
+- `scripts/build-data.mjs` turns `../data/` into `public/data/` (only the 3,729 names with 100+ people). It runs automatically before dev, build and tests; `public/data/` is gitignored.
+- `src/game/quickMode.ts` has all Quick Mode rules as plain functions, separate from the UI; `quickMode.test.ts` plays many full games to check them.
+- Names with the same English spelling (e.g. לונה and לונא, both "Luna") count as one name in the game, because the data grouping missed some spelling variants.
+- Texts are in `src/i18n/en.json` and `he.json` (a test checks both have the same keys). Colors and sizes come only from `src/styles/tokens.css`. Layout uses direction-aware CSS (`inset-inline-start`, `margin-inline`), so RTL works without extra styles.
+
 ## Running the prototype
 
 `npx serve` from the repo root, then open http://localhost:3000. Opening the file directly doesn't work, because the browser blocks fetch from disk.

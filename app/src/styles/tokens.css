@@ -1,0 +1,81 @@
+/* Design tokens: every color, size and radius in the app comes from here. */
+:root {
+  --font: 'Rubik', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 22px;
+  --radius-full: 999px;
+
+  --text-s: 0.875rem;
+  --text-m: 1rem;
+  --text-l: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-name: clamp(1.75rem, 7vw, 2.5rem);
+  --text-hero: clamp(3rem, 15vw, 6.5rem);
+
+  --content-width: 960px;
+  --header-height: 60px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* light theme */
+  color-scheme: light;
+  --bg: #f6f5f3;
+  --surface: #ffffff;
+  --surface-2: #efede9;
+  --text: #1c1917;
+  --muted: #6b6560;
+  --line: #e4e1dc;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --on-accent: #ffffff;
+  --accent-soft: #e0e7ff;
+  --warn: #c2410c;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.06);
+  --glow: 0 0 0 transparent;
+}
+
+/* dark theme: when chosen, or when the system is dark and nothing was chosen */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #141312;
+    --surface: #1f1d1b;
+    --surface-2: #2a2724;
+    --text: #f4f3f1;
+    --muted: #a39e98;
+    --line: #36322e;
+    --accent: #818cf8;
+    --accent-hover: #a5b4fc;
+    --on-accent: #0f0e1a;
+    --accent-soft: #2b2860;
+    --warn: #fb923c;
+    --shadow: none;
+    --glow: 0 0 60px rgb(129 140 248 / 0.25);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #141312;
+  --surface: #1f1d1b;
+  --surface-2: #2a2724;
+  --text: #f4f3f1;
+  --muted: #a39e98;
+  --line: #36322e;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --on-accent: #0f0e1a;
+  --accent-soft: #2b2860;
+  --warn: #fb923c;
+  --shadow: none;
+  --glow: 0 0 60px rgb(129 140 248 / 0.25);
+}

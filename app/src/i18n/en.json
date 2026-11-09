@@ -1,0 +1,69 @@
+{
+  "app": {
+    "title": "Name Finder",
+    "home": "Home"
+  },
+  "header": {
+    "switchLanguage": "עברית",
+    "switchLanguageLabel": "Switch to Hebrew",
+    "themeToDark": "Switch to dark theme",
+    "themeToLight": "Switch to light theme"
+  },
+  "common": {
+    "loading": "Loading names…",
+    "loadError": "Couldn't load the names. Check your connection and try again.",
+    "retry": "Try again"
+  },
+  "home": {
+    "title": "Find the right name",
+    "subtitle": "Play your way to a name. Each mode explores names differently.",
+    "quickTitle": "Quick Mode",
+    "quickText": "10 quick steps, 3 names each. Trust your gut.",
+    "play": "Play",
+    "moreTitle": "More modes",
+    "moreText": "Coming soon"
+  },
+  "setup": {
+    "title": "Quick Mode",
+    "intro": "At each step, pick the name you like most. The next names follow your choices.",
+    "genderTitle": "Who is the name for?",
+    "communityTitle": "Names from which community?",
+    "difficultyTitle": "Difficulty",
+    "start": "Start"
+  },
+  "gender": {
+    "boy": "Boy",
+    "girl": "Girl",
+    "any": "Any"
+  },
+  "community": {
+    "jewish": "Jewish",
+    "arab": "Arab",
+    "any": "Any",
+    "names": "{{n}} names"
+  },
+  "difficulty": {
+    "hard": "Hard",
+    "normal": "Normal",
+    "easy": "Easy",
+    "seconds": "{{n}} sec per step"
+  },
+  "play": {
+    "step": "Step {{step}} of {{total}}",
+    "prompt": "Which name do you like most?",
+    "yourPick": "Your pick",
+    "timeUp": "Time's up! Here are new names.",
+    "skip": "Skip",
+    "secondsLeft": "{{n}} seconds left",
+    "keyboardHint": "Tip: press 1, 2 or 3"
+  },
+  "winner": {
+    "eyebrow": "Your name is",
+    "people": "{{n}} people in Israel",
+    "labels": "About this name",
+    "history": "Your picks",
+    "stepN": "Step {{step}}",
+    "restart": "Restart",
+    "changeGender": "Change gender"
+  }
+}

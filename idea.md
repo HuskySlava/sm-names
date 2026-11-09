@@ -10,6 +10,9 @@ The user finds their preferred name in 10 steps.
 
 - Before step 1, the user chooses Boy, Girl or Any. This is a hard filter for the whole game: Boy shows male, mostly
   male and unisex names; Girl shows female, mostly female and unisex names; Any shows all names.
+- Before step 1, the user also chooses Jewish, Arab or Any. This is also a hard filter for the whole game: Jewish shows
+  names with the Jewish label; Arab shows names with the Arab Muslim, Arab Christian or Druze label; Any shows all
+  names. Names used in both communities appear under both choices.
 - Only names with at least 100 people (all spellings combined) can appear, to avoid obscure names (about 3,700 names).
 - A name and all its spellings count as one name: only the most common spelling is shown, and once a name has appeared
   none of its spellings can appear again.
@@ -31,10 +34,12 @@ The user finds their preferred name in 10 steps.
   advance, and the carried-over name is dropped too). The new names follow the same narrowing rules, based on the
   selections so far; on step 1 they are again 3 names with very little in common. This also applies to step 10, so the
   game only ends when a name is selected in step 10.
+- Each step has a Skip button that does the same as when the countdown reaches zero.
 - This repeats for 10 steps. The name selected in step 10 is shown full screen as the winner.
 - The winner screen also shows the history of names selected in each step, with two buttons:
-  - Restart: starts a new game with the same gender and difficulty.
-  - Change gender: goes back to the Boy / Girl / Any choice, keeping the same difficulty.
+  - Restart: starts a new game with the same gender, community and difficulty.
+  - Change gender: goes back to the setup screen (gender, community and difficulty), with the previous choices
+    preselected.
 
 ### 2. [TBD]
 

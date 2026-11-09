@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>"
+    />
+    <title>מוצאים שם</title>
+    <script>
+      // set language, direction and theme before the first paint, so the page doesn't flash
+      try {
+        const s = JSON.parse(localStorage.getItem('sm-names-settings') || '{}').state || {};
+        const lang = s.lang === 'en' ? 'en' : 'he';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+        if (s.theme === 'light' || s.theme === 'dark')
+          document.documentElement.dataset.theme = s.theme;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

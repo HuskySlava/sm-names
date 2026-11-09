@@ -1,0 +1,168 @@
+.play {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.progress {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stepText {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar li {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  transition: background-color 0.3s;
+}
+
+.bar li.done {
+  background: var(--accent);
+}
+
+.bar li.current {
+  background: color-mix(in srgb, var(--accent) 45%, var(--surface-2));
+}
+
+.prompt {
+  font-size: var(--text-xl);
+  line-height: 1.2;
+}
+
+.live {
+  min-height: 1.5em;
+}
+
+.timeUp {
+  color: var(--warn);
+  font-weight: 500;
+}
+
+.options {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-4);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    transform 0.1s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.carried {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+}
+
+.name {
+  font-size: var(--text-name);
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.key {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-start: var(--space-3);
+  width: 26px;
+  height: 26px;
+  display: none;
+  place-items: center;
+  border-radius: var(--radius-s);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: var(--text-s);
+}
+
+.badge {
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: var(--text-s);
+  font-weight: 500;
+}
+
+.skip {
+  align-self: center;
+  min-width: 160px;
+}
+
+.hint {
+  display: none;
+  color: var(--muted);
+  font-size: var(--text-s);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card {
+    min-height: 200px;
+  }
+}
+
+/* keyboard tips only on devices with a mouse */
+@media (hover: hover) and (pointer: fine) {
+  .key {
+    display: grid;
+  }
+
+  .hint {
+    display: block;
+  }
+}

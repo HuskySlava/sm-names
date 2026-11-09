@@ -1,0 +1,69 @@
+{
+  "app": {
+    "title": "מוצאים שם",
+    "home": "בית"
+  },
+  "header": {
+    "switchLanguage": "English",
+    "switchLanguageLabel": "החלפה לאנגלית",
+    "themeToDark": "מעבר לערכת צבעים כהה",
+    "themeToLight": "מעבר לערכת צבעים בהירה"
+  },
+  "common": {
+    "loading": "טוען שמות…",
+    "loadError": "לא הצלחנו לטעון את השמות. בדקו את החיבור ונסו שוב.",
+    "retry": "לנסות שוב"
+  },
+  "home": {
+    "title": "מוצאים את השם הנכון",
+    "subtitle": "משחקים בדרך אל השם. כל מצב מגלה שמות בדרך אחרת.",
+    "quickTitle": "מצב מהיר",
+    "quickText": "10 שלבים מהירים, 3 שמות בכל שלב. סמכו על הבטן.",
+    "play": "לשחק",
+    "moreTitle": "מצבים נוספים",
+    "moreText": "בקרוב"
+  },
+  "setup": {
+    "title": "מצב מהיר",
+    "intro": "בכל שלב בחרו את השם שהכי אהבתם. השמות הבאים יתאימו לבחירות שלכם.",
+    "genderTitle": "למי השם?",
+    "communityTitle": "שמות מאיזו קהילה?",
+    "difficultyTitle": "רמת קושי",
+    "start": "מתחילים"
+  },
+  "gender": {
+    "boy": "בן",
+    "girl": "בת",
+    "any": "לא משנה"
+  },
+  "community": {
+    "jewish": "יהודי",
+    "arab": "ערבי",
+    "any": "לא משנה",
+    "names": "{{n}} שמות"
+  },
+  "difficulty": {
+    "hard": "קשה",
+    "normal": "רגיל",
+    "easy": "קל",
+    "seconds": "{{n}} שניות לשלב"
+  },
+  "play": {
+    "step": "שלב {{step}} מתוך {{total}}",
+    "prompt": "איזה שם הכי אהבתם?",
+    "yourPick": "הבחירה שלכם",
+    "timeUp": "נגמר הזמן! הנה שמות חדשים.",
+    "skip": "דילוג",
+    "secondsLeft": "נותרו {{n}} שניות",
+    "keyboardHint": "טיפ: אפשר ללחוץ 1, 2 או 3"
+  },
+  "winner": {
+    "eyebrow": "השם שלכם הוא",
+    "people": "{{n}} אנשים בישראל",
+    "labels": "על השם",
+    "history": "הבחירות שלכם",
+    "stepN": "שלב {{step}}",
+    "restart": "להתחיל מחדש",
+    "changeGender": "שינוי בן / בת"
+  }
+}
