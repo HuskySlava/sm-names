@@ -55,3 +55,4 @@ say which requirements were checked and how.
 - When reviewing, raise one point at a time and wait for a decision.
 - When asked for advice or a review, don't change files until asked.
 - Commit only when asked. The user usually commits themselves.
+- Don't edit `idea.md`; the user owns it. Log every major feature as one line in `updates.md` (date — what changed).
