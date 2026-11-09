@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שמות בישראל</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f5; --fg: #1c1917; --muted: #78716c; --line: #e7e5e4; --card: #ffffff;
+    --accent: #4f46e5; --accent-soft: #e0e7ff; --chip: #f1f0ee; --bar: #c7d2fe; --peak: #4f46e5;
+    --m: #3b82f6; --f: #ec4899; --u: #8b5cf6; --shadow: 0 1px 2px rgb(0 0 0 / .06), 0 4px 16px rgb(0 0 0 / .04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171615; --fg: #f5f5f4; --muted: #a8a29e; --line: #3a3633; --card: #22201e;
+      --accent: #818cf8; --accent-soft: #2e2a5c; --chip: #2e2b28; --bar: #4338ca; --peak: #a5b4fc;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; font: 15px/1.55 Rubik, system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); display: flex; flex-direction: column; }
+  a { color: inherit; text-decoration: none; }
+  button, select, input { font: inherit; color: inherit; }
+
+  /* header */
+  header { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 12px 20px; background: var(--card); border-bottom: 1px solid var(--line); }
+  .logo { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .logo span { color: var(--accent); }
+  .search { flex: 1; min-width: 220px; position: relative; }
+  .search input { width: 100%; padding: 10px 40px 10px 14px; padding-inline-start: 40px; padding-inline-end: 14px; font-size: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+  .search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; background: var(--card); }
+  .search svg { position: absolute; inset-inline-start: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+  .search kbd { position: absolute; inset-inline-end: 10px; top: 50%; transform: translateY(-50%); font: 12px ui-monospace, monospace; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); cursor: pointer; white-space: nowrap; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* layout */
+  main { flex: 1; display: grid; grid-template-columns: 330px 1fr; min-height: 0; }
+  aside { border-inline-end: 1px solid var(--line); overflow: auto; padding: 14px 16px 30px; background: var(--card); }
+  #view { overflow: auto; padding: 24px 28px 60px; }
+  .wrap { max-width: 860px; }
+  #lf { width: 100%; padding: 7px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); margin-bottom: 6px; }
+  #lf:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  details { border-bottom: 1px solid var(--line); padding: 2px 0 8px; }
+  summary { cursor: pointer; font-weight: 500; padding: 8px 0 6px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "▾"; color: var(--muted); transition: transform .15s; }
+  details:not([open]) summary::after { transform: rotate(90deg); }
+  [dir="rtl"] details:not([open]) summary::after { transform: rotate(-90deg); }
+  summary .n { color: var(--muted); font-weight: 400; font-size: 12px; margin-inline-start: 6px; }
+
+  /* chips */
+  .chip { display: inline-flex; gap: 6px; align-items: baseline; margin: 3px 2px; padding: 3px 11px; border-radius: 999px; background: var(--chip); border: 1px solid transparent; font-size: 13px; transition: border-color .1s, background .1s; }
+  .chip:hover { border-color: var(--accent); }
+  .chip small { color: var(--muted); font-size: 11px; }
+  .chip.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 500; }
+  .chip.zero { opacity: .35; pointer-events: none; }
+  .chip .x { font-weight: 700; margin-inline-start: 2px; }
+
+  /* headings and text */
+  h2 { margin: 0 0 4px; font-size: 24px; font-weight: 700; }
+  h3 { margin: 0 0 10px; font-size: 16px; font-weight: 500; }
+  .muted { color: var(--muted); }
+  .sub { color: var(--muted); margin: 0 0 16px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  select { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); }
+
+  /* name list */
+  .list { list-style: none; padding: 0; margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  .row { position: relative; display: grid; grid-template-columns: 10px auto 1fr auto; gap: 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+  .list li:last-child .row { border-bottom: 0; }
+  .row:hover { background: var(--chip); }
+  .row > * { position: relative; z-index: 1; }
+  .row > .bar { position: absolute; z-index: 0; inset-inline-start: 0; top: 0; bottom: 0; background: var(--accent); opacity: .07; pointer-events: none; }
+  .row .nm { font-size: 17px; font-weight: 500; }
+  .row .en { color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row .cnt { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+  .dot.m { background: var(--m); } .dot.f { background: var(--f); } .dot.u { background: var(--u); }
+  .more { margin-top: 14px; }
+
+  /* home */
+  .hero { background: linear-gradient(135deg, var(--accent-soft), transparent 70%); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; margin-bottom: 22px; }
+  .hero h2 { font-size: 28px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 18px 0 4px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; box-shadow: var(--shadow); }
+  .stat b { display: block; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: 13px; }
+
+  /* name page */
+  .name-head { display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; justify-content: space-between; }
+  .big { font-size: 52px; font-weight: 700; line-height: 1.1; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; font-size: 13px; background: var(--chip); }
+  .en-line { font-size: 18px; color: var(--muted); margin-top: 6px; }
+  section.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; margin-top: 18px; box-shadow: var(--shadow); }
+  .cat { margin: 12px 0 2px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: .02em; }
+  .cat:first-of-type { margin-top: 0; }
+  .chart { direction: ltr; }
+  .chart svg { display: block; width: 100%; height: auto; }
+  .chart rect.b { fill: var(--bar); }
+  .chart rect.b:hover { fill: var(--accent); }
+  .chart rect.pk { fill: var(--peak); }
+  .chart line { stroke: var(--line); }
+  .chart text { fill: var(--muted); font-size: 11px; font-family: inherit; }
+  .sector { display: grid; grid-template-columns: 110px 1fr auto; gap: 12px; align-items: center; margin: 8px 0; font-size: 14px; }
+  .track { height: 12px; background: var(--chip); border-radius: 6px; overflow: hidden; display: flex; }
+  .track .m { background: var(--m); } .track .f { background: var(--f); }
+  .legend { display: flex; gap: 16px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-inline-end: 6px; vertical-align: middle; }
+  .spellings { display: flex; flex-wrap: wrap; gap: 8px; }
+  .spellings span { background: var(--chip); border-radius: 8px; padding: 4px 10px; font-size: 15px; }
+  .spellings small { color: var(--muted); margin-inline-start: 6px; }
+  .similar { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .similar a { display: block; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); }
+  .similar a:hover { border-color: var(--accent); }
+  .similar b { display: block; font-size: 16px; font-weight: 500; }
+  .similar small { color: var(--muted); }
+
+  /* loading and toast */
+  .loading { max-width: 420px; margin: 80px auto; text-align: center; }
+  .progress { height: 6px; border-radius: 3px; background: var(--chip); overflow: hidden; margin-top: 14px; }
+  .progress div { height: 100%; width: 0; background: var(--accent); transition: width .15s; }
+  #toast { position: fixed; bottom: 24px; inset-inline-start: 50%; transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 8px 18px; border-radius: 10px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  [dir="rtl"] #toast { transform: translateX(50%); }
+  #toast.show { opacity: 1; }
+  pre { background: var(--chip); padding: 10px 14px; border-radius: 8px; direction: ltr; text-align: left; }
+
+  @media (max-width: 800px) {
+    main { grid-template-columns: 1fr; display: block; overflow: auto; }
+    aside { border-inline-end: 0; border-bottom: 1px solid var(--line); max-height: 40vh; }
+    #view { overflow: visible; padding: 16px; }
+    .big { font-size: 40px; }
+    .search kbd { display: none; }
+    .sector { grid-template-columns: 90px 1fr auto; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#"><span>✦</span><b id="t-title"></b></a>
+  <label class="search">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" autocomplete="off" spellcheck="false" disabled>
+    <kbd>/</kbd>
+  </label>
+  <button class="btn" id="random" type="button" disabled>🎲 <span id="t-random"></span></button>
+  <button class="btn" id="lang" type="button"></button>
+</header>
+<main>
+  <aside>
+    <input id="lf" type="search" autocomplete="off">
+    <div id="cats"></div>
+  </aside>
+  <div id="view"></div>
+</main>
+<div id="toast" role="status"></div>
+
+<script>
+// ---------- texts ----------
+const T = {
+  he: {
+    dir: 'rtl', locale: 'he-IL', title: 'שמות בישראל', other: 'English',
+    search: 'חיפוש שם בעברית או באנגלית (למשל: דוד, Vichislav)', random: 'שם אקראי', filterLabels: 'סינון תוויות…',
+    loading: 'טוען את מאגר השמות…', heroTitle: 'כל השמות בישראל, עם תוויות',
+    heroText: 'חפשו שם כדי לראות את התוויות שלו, או בחרו תווית אחת או יותר מהרשימה כדי למצוא שמות מתאימים.',
+    names: 'שמות', spellings: 'כתיבים', people: 'אנשים', labels: 'תוויות',
+    mostCommon: 'השמות הנפוצים ביותר', results: (q) => `תוצאות עבור „${q}”`, nNames: (n) => `${n} שמות`,
+    noResults: 'לא נמצאו שמות. נסו כתיב אחר.', selected: 'תוויות נבחרות:', clear: 'ניקוי',
+    matching: (n) => `${n} שמות מתאימים לכל התוויות`, sortPop: 'מהנפוץ לנדיר', sortAlpha: 'לפי א״ב',
+    showMore: (n) => `הצגת עוד (${n} נותרו)`, peakYear: 'שנת שיא', mainCommunity: 'קהילה עיקרית',
+    noLabels: 'אין תוויות לשם הזה.', byCommunity: 'לפי קהילה', perYear: 'נולדו בכל שנה',
+    noYearly: 'אין נתונים שנתיים: בכל שנה נולדו פחות מ-5 אנשים בשם הזה.', peak: (y, n) => `שיא ב-${y}: ${n} אנשים`,
+    similar: 'שמות דומים', similarSub: 'לפי התוויות המשותפות', copy: 'העתקת קישור', copied: 'הקישור הועתק',
+    male: 'גברים', female: 'נשים', gender: { m: 'שם לבנים', f: 'שם לבנות', u: 'יוניסקס' },
+    sectors: { Jewish: 'יהודים', Muslim: 'מוסלמים', 'Christian-Arab': 'נוצרים-ערבים', Druze: 'דרוזים', Other: 'אחר' },
+    loadError: 'לא ניתן לטעון את הנתונים', serverHint: 'דפדפנים חוסמים טעינת קבצים כשהעמוד נפתח ישירות מהדיסק. הריצו שרת מקומי מתיקיית הפרויקט:',
+    then: 'ואז פתחו', source: 'מקור: הלשכה המרכזית לסטטיסטיקה (פרסום 391/2025), מרשם האוכלוסין לפי שנת לידה 1948–2024.',
+  },
+  en: {
+    dir: 'ltr', locale: 'en-US', title: 'Israeli Names', other: 'עברית',
+    search: 'Search a name in Hebrew or English (e.g. דוד, Vichislav)', random: 'Random name', filterLabels: 'Filter labels…',
+    loading: 'Loading the names data…', heroTitle: 'Every name in Israel, labeled',
+    heroText: 'Search a name to see its labels, or pick one or more labels on the side to find matching names.',
+    names: 'names', spellings: 'spellings', people: 'people', labels: 'labels',
+    mostCommon: 'Most common names', results: (q) => `Results for “${q}”`, nNames: (n) => `${n} names`,
+    noResults: 'No names found. Try another spelling.', selected: 'Selected labels:', clear: 'Clear',
+    matching: (n) => `${n} names match all labels`, sortPop: 'Most common first', sortAlpha: 'Alphabetical',
+    showMore: (n) => `Show more (${n} left)`, peakYear: 'Peak year', mainCommunity: 'Main community',
+    noLabels: 'No labels for this name.', byCommunity: 'By community', perYear: 'People born per year',
+    noYearly: 'No yearly data: fewer than 5 people with this name were born in any single year.', peak: (y, n) => `Peak in ${y}: ${n} people`,
+    similar: 'Similar names', similarSub: 'by shared labels', copy: 'Copy link', copied: 'Link copied',
+    male: 'Male', female: 'Female', gender: { m: 'Boy name', f: 'Girl name', u: 'Unisex' },
+    sectors: { Jewish: 'Jewish', Muslim: 'Muslim', 'Christian-Arab': 'Christian-Arab', Druze: 'Druze', Other: 'Other' },
+    loadError: 'Could not load the data', serverHint: 'Browsers block loading files when the page is opened directly from disk. Run a local server from the project folder:',
+    then: 'then open', source: 'Source: Israel Central Bureau of Statistics (release 391/2025), population register by year of birth 1948–2024.',
+  },
+};
+
+// ---------- helpers ----------
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+};
+let lang = store.get('lang') === 'en' ? 'en' : 'he';
+let t = T[lang];
+let nf = new Intl.NumberFormat(t.locale);
+const fmt = (n) => nf.format(n);
+const PAGE = 150;
+let sortMode = 'pop';
+const openCats = new Set(['1']);
+
+// search keys
+const HEBREW = /[֐-׿]/;
+const normHe = (s) => s.replace(/['"׳״\-\s]/g, '');
+const normEn = (s) => s.toLowerCase().replace(/[^a-z]/g, '');
+// rough sound-alike key: drop vowels and h after the first letter, collapse doubles (Vichislav ~ Vyacheslav)
+const skelEn = (s) => { const n = normEn(s); return (n[0] || '') + n.slice(1).replace(/[aeiouyh]/g, '').replace(/(.)\1+/g, '$1'); };
+
+// ---------- data ----------
+const db = { labels: {}, categories: {}, he: { labels: {}, categories: {} }, groups: new Map(), list: [], byLabel: new Map(), idf: new Map(), people: 0, spellings: 0 };
+const labelName = (id) => (lang === 'he' ? db.he.labels[id] : db.labels[id]?.name) || '?';
+const catName = (id) => (lang === 'he' ? db.he.categories[id] : db.categories[id]) || '?';
+
+async function fetchJSON(url, onProgress) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`${url}: ${r.status}`);
+  const total = Number(r.headers.get('content-length')) || 0;
+  if (!r.body || !total || !onProgress) return r.json();
+  const reader = r.body.getReader();
+  const chunks = [];
+  let got = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    got += value.length;
+    onProgress(Math.min(1, got / total));
+  }
+  const buf = new Uint8Array(got);
+  let off = 0;
+  for (const c of chunks) { buf.set(c, off); off += c.length; }
+  return JSON.parse(new TextDecoder().decode(buf));
+}
+
+async function load() {
+  $('#view').innerHTML = `<div class="loading"><p>${t.loading}</p><div class="progress"><div id="pb"></div></div></div>`;
+  const [names, labelsDoc, labelsHe] = await Promise.all([
+    fetchJSON('data/names.json', (p) => { const b = $('#pb'); if (b) b.style.width = `${p * 100}%`; }),
+    fetchJSON('data/labels.json'),
+    fetchJSON('data/labels_he.json'),
+  ]);
+  db.categories = labelsDoc.categories;
+  db.labels = labelsDoc.labels;
+  db.he = labelsHe;
+
+  // one entry per name group (all spellings of one name); the main spelling carries the labels
+  for (const n of names) {
+    let g = db.groups.get(n.group);
+    if (!g) { g = { id: n.group, spellings: [], total: 0 }; db.groups.set(n.group, g); }
+    g.spellings.push(n);
+    g.total += n.total;
+    if (n.id === n.group) g.main = n;
+  }
+  db.spellings = names.length;
+  for (const g of db.groups.values()) {
+    g.spellings.sort((a, b) => b.total - a.total);
+    g.labels = g.main.labels;
+    g.labelSet = new Set(g.labels);
+    g.en = g.main.en || [];
+    g.heKeys = g.spellings.map((s) => normHe(s.name));
+    g.enKeys = g.en.map(normEn);
+    g.enSkels = g.en.map(skelEn);
+    g.sex = g.labelSet.has(1) || g.labelSet.has(4) ? 'm' : g.labelSet.has(2) || g.labelSet.has(5) ? 'f' : 'u';
+    db.people += g.total;
+    for (const l of g.labels) {
+      if (!db.byLabel.has(l)) db.byLabel.set(l, []);
+      db.byLabel.get(l).push(g);
+    }
+  }
+  db.list = [...db.groups.values()].sort((a, b) => b.total - a.total);
+  for (const [l, gs] of db.byLabel) {
+    gs.sort((a, b) => b.total - a.total);
+    db.idf.set(l, Math.log(db.groups.size / gs.length)); // rare labels count more for "similar names"
+  }
+}
+
+// ---------- queries ----------
+function withLabels(ids) {
+  if (!ids.length) return db.list;
+  const lists = ids.map((id) => db.byLabel.get(id) || []).sort((a, b) => a.length - b.length);
+  return lists[0].filter((g) => ids.every((id) => g.labelSet.has(id)));
+}
+
+function search(q) {
+  q = q.trim();
+  if (!q) return [];
+  const out = [];
+  if (HEBREW.test(q)) {
+    const k = normHe(q);
+    for (const g of db.list) {
+      let r = 9;
+      for (const h of g.heKeys) r = Math.min(r, h === k ? 0 : h.startsWith(k) ? 1 : h.includes(k) ? 2 : 9);
+      if (r < 9) out.push([r, g]);
+    }
+  } else {
+    const k = normEn(q), sk = skelEn(q);
+    if (!k) return [];
+    for (const g of db.list) {
+      let r = 9;
+      g.enKeys.forEach((e, i) => {
+        let x = e === k ? 0 : e.startsWith(k) ? 1 : e.includes(k) ? 2 : 9;
+        if (x === 9 && k.length >= 3) {
+          const s = g.enSkels[i];
+          x = s === sk ? 3 : sk.length >= 3 && s.startsWith(sk) ? 4 : 9;
+        }
+        r = Math.min(r, x);
+      });
+      if (r < 9) out.push([r, g]);
+    }
+  }
+  // db.list is already most-common-first, and sort is stable
+  return out.sort((a, b) => a[0] - b[0]).map((x) => x[1]);
+}
+
+function similar(g, n = 12) {
+  const scored = [];
+  for (const o of db.list) {
+    if (o === g) continue;
+    let s = 0;
+    for (const l of o.labels) if (g.labelSet.has(l)) s += db.idf.get(l);
+    if (s > 0) scored.push([s, o]);
+  }
+  return scored.sort((a, b) => b[0] - a[0] || b[1].total - a[1].total).slice(0, n).map((x) => x[1]);
+}
+
+// ---------- sidebar ----------
+let current = { kind: 'home', ids: [] };
+
+function renderSidebar() {
+  const sel = current.kind === 'labels' ? current.ids : [];
+  let counts;
+  if (sel.length) {
+    counts = new Map();
+    for (const g of withLabels(sel)) for (const l of g.labels) counts.set(l, (counts.get(l) || 0) + 1);
+  }
+  const filter = $('#lf').value.trim().toLowerCase();
+  const byCat = {};
+  for (const [id, l] of Object.entries(db.labels)) (byCat[l.category] ||= []).push(Number(id));
+  for (const id of sel) openCats.add(String(db.labels[id]?.category));
+
+  $('#cats').innerHTML = Object.keys(db.categories).map((cid) => {
+    const ids = byCat[cid].filter((id) => db.byLabel.has(id) && (!filter || labelName(id).toLowerCase().includes(filter) || db.labels[id].name.toLowerCase().includes(filter)));
+    if (!ids.length) return '';
+    const chips = ids.map((id) => {
+      const on = sel.includes(id);
+      const count = sel.length ? (counts.get(id) || 0) : db.byLabel.get(id).length;
+      const next = on ? sel.filter((x) => x !== id) : [...sel, id];
+      const href = next.length ? `#labels/${next.join(',')}` : '#';
+      return `<a class="chip${on ? ' on' : ''}${!on && count === 0 ? ' zero' : ''}" href="${href}">${esc(labelName(id))} <small>${fmt(count)}</small></a>`;
+    }).join('');
+    const open = filter || openCats.has(cid) ? ' open' : '';
+    return `<details data-cat="${cid}"${open}><summary><span>${esc(catName(cid))}<span class="n">${ids.length}</span></span></summary>${chips}</details>`;
+  }).join('');
+  for (const d of document.querySelectorAll('#cats details')) {
+    d.addEventListener('toggle', () => { if (!filter) d.open ? openCats.add(d.dataset.cat) : openCats.delete(d.dataset.cat); });
+  }
+}
+
+// ---------- views ----------
+function row(g, max) {
+  const en = g.en.length ? `<bdi class="en" dir="ltr">${esc(g.en.join(', '))}</bdi>` : '<span></span>';
+  const w = max ? Math.max(0.5, (Math.sqrt(g.total) / Math.sqrt(max)) * 100) : 0;
+  return `<li><a class="row" href="#name/${g.id}"><span class="dot ${g.sex}" title="${esc(t.gender[g.sex])}"></span>
+    <bdi class="nm" dir="rtl">${esc(g.main.name)}</bdi>${en}<span class="cnt">${fmt(g.total)}</span>
+    <span class="bar" style="width:${w}%"></span></a></li>`;
+}
+
+function listHtml(groups, { sortable = true } = {}) {
+  return `<div class="toolbar"><span class="muted">${t.nNames(fmt(groups.length))}</span>
+    ${sortable ? `<select id="sort"><option value="pop">${t.sortPop}</option><option value="alpha"${sortMode === 'alpha' ? ' selected' : ''}>${t.sortAlpha}</option></select>` : ''}</div>
+    <ul class="list" id="list"></ul><div id="morebox"></div>`;
+}
+
+function fillList(groups, { sortable = true } = {}) {
+  let items = groups;
+  if (sortable && sortMode === 'alpha') items = [...groups].sort((a, b) => a.main.name.localeCompare(b.main.name, 'he'));
+  const max = Math.max(1, ...groups.slice(0, 1000).map((g) => g.total));
+  let shown = 0;
+  const more = () => {
+    $('#list').insertAdjacentHTML('beforeend', items.slice(shown, shown + PAGE).map((g) => row(g, max)).join(''));
+    shown += PAGE;
+    $('#morebox').innerHTML = items.length > shown ? `<button class="btn more" type="button">${t.showMore(fmt(items.length - shown))}</button>` : '';
+    const b = $('#morebox button');
+    if (b) b.onclick = more;
+  };
+  more();
+  const s = $('#sort');
+  if (s) s.onchange = () => { sortMode = s.value; route(); };
+}
+
+function showHome() {
+  current = { kind: 'home', ids: [] };
+  renderSidebar();
+  $('#view').innerHTML = `<div class="wrap">
+    <div class="hero"><h2>${t.heroTitle}</h2><p class="muted" style="margin:0">${t.heroText}</p>
+      <div class="stats">
+        <div class="stat"><b>${fmt(db.groups.size)}</b><span>${t.names}</span></div>
+        <div class="stat"><b>${fmt(db.spellings)}</b><span>${t.spellings}</span></div>
+        <div class="stat"><b>${fmt(db.people)}</b><span>${t.people}</span></div>
+        <div class="stat"><b>${fmt(Object.keys(db.labels).length)}</b><span>${t.labels}</span></div>
+      </div></div>
+    <h3>${t.mostCommon}</h3>${listHtml(db.list)}
+    <p class="muted" style="font-size:13px;margin-top:18px">${t.source}</p></div>`;
+  fillList(db.list);
+}
+
+function showLabels(ids) {
+  ids = [...new Set(ids.map(Number).filter((id) => db.labels[id]))];
+  if (!ids.length) return showHome();
+  current = { kind: 'labels', ids };
+  renderSidebar();
+  const groups = withLabels(ids);
+  const chips = ids.map((id) => {
+    const rest = ids.filter((x) => x !== id);
+    return `<a class="chip on" href="${rest.length ? '#labels/' + rest.join(',') : '#'}" title="${esc(catName(db.labels[id].category))}">${esc(labelName(id))} <span class="x">×</span></a>`;
+  }).join('');
+  const title = ids.length === 1 ? esc(labelName(ids[0])) : t.matching(fmt(groups.length));
+  const sub = ids.length === 1 ? esc(catName(db.labels[ids[0]].category)) : '';
+  $('#view').innerHTML = `<div class="wrap"><h2>${title}</h2>${sub ? `<p class="sub">${sub}</p>` : ''}
+    <p style="margin:10px 0 16px"><span class="muted">${t.selected}</span> ${chips} <a class="chip" href="#">${t.clear}</a></p>
+    ${listHtml(groups)}</div>`;
+  fillList(groups);
+  $('#view').scrollTop = 0;
+}
+
+function showSearch(q) {
+  current = { kind: 'search', ids: [] };
+  if ($('#q').value !== q) $('#q').value = q;
+  if (!q.trim()) return showHome();
+  renderSidebar();
+  const res = search(q);
+  $('#view').innerHTML = `<div class="wrap"><h2>${t.results(esc(q))}</h2>
+    ${res.length ? listHtml(res, { sortable: false }) : `<p class="sub">${t.noResults}</p>`}</div>`;
+  if (res.length) fillList(res, { sortable: false });
+}
+
+function yearData(g) {
+  const byYear = new Map();
+  for (const s of g.spellings)
+    for (const sexes of Object.values(s.years))
+      for (const pts of Object.values(sexes))
+        for (const [y, n] of pts) byYear.set(y, (byYear.get(y) || 0) + n);
+  return byYear;
+}
+
+function niceMax(v) {
+  const p = 10 ** Math.floor(Math.log10(v));
+  for (const m of [1, 2, 2.5, 5, 10]) if (m * p >= v) return m * p;
+  return 10 * p;
+}
+
+function chartSvg(byYear, peakYear) {
+  const y0 = 1948, y1 = 2024, W = 800, H = 220, L = 46, B = 24, TOP = 8;
+  const max = niceMax(Math.max(...byYear.values()));
+  const bw = (W - L) / (y1 - y0 + 1);
+  const yy = (v) => TOP + (H - B - TOP) * (1 - v / max);
+  let grid = '';
+  for (let i = 0; i <= 4; i++) {
+    const v = (max / 4) * i;
+    grid += `<line x1="${L}" x2="${W}" y1="${yy(v)}" y2="${yy(v)}"/><text x="${L - 6}" y="${yy(v) + 4}" text-anchor="end">${fmt(v)}</text>`;
+  }
+  const bars = [...byYear].map(([y, n]) => {
+    const top = yy(n);
+    return `<rect class="b${y === peakYear ? ' pk' : ''}" x="${L + (y - y0) * bw + 0.5}" y="${top}" width="${Math.max(1, bw - 1.5)}" height="${Math.max(1, H - B - top)}" rx="1.5"><title>${y}: ${fmt(n)}</title></rect>`;
+  }).join('');
+  const ticks = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020].map((y) => `<text x="${L + (y - y0 + 0.5) * bw}" y="${H - 6}" text-anchor="middle">${y}</text>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.perYear)}">${grid}${bars}${ticks}</svg>`;
+}
+
+function showName(id) {
+  const g = db.groups.get(Number(id));
+  if (!g) return showHome();
+  current = { kind: 'name', ids: [] };
+  renderSidebar();
+
+  const byCat = {};
+  for (const l of g.labels) (byCat[db.labels[l].category] ||= []).push(l);
+  const labelsHtml = Object.keys(db.categories).filter((c) => byCat[c]).map((c) =>
+    `<div class="cat">${esc(catName(c))}</div>${byCat[c].map((l) => `<a class="chip" href="#labels/${l}">${esc(labelName(l))} <small>${fmt(db.byLabel.get(l).length)}</small></a>`).join('')}`).join('');
+
+  const sectors = {};
+  for (const s of g.spellings)
+    for (const [sec, sexes] of Object.entries(s.counts))
+      for (const [sex, n] of Object.entries(sexes)) { sectors[sec] ||= { M: 0, F: 0 }; sectors[sec][sex] += n; }
+  const secRows = Object.entries(sectors).sort((a, b) => (b[1].M + b[1].F) - (a[1].M + a[1].F));
+  const secMax = Math.max(...secRows.map(([, v]) => v.M + v.F));
+  const mainSector = secRows[0][0];
+
+  const byYear = yearData(g);
+  let peakYear = null;
+  for (const [y, n] of byYear) if (peakYear === null || n > byYear.get(peakYear)) peakYear = y;
+  const sim = similar(g);
+
+  $('#view').innerHTML = `<div class="wrap">
+    <div class="name-head"><div>
+      <div class="big"><bdi dir="rtl">${esc(g.main.name)}</bdi></div>
+      ${g.en.length ? `<div class="en-line"><bdi dir="ltr">${esc(g.en.join(' · '))}</bdi></div>` : ''}
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="badge"><span class="dot ${g.sex}"></span>${t.gender[g.sex]}</span>
+      <button class="btn" id="copy" type="button">🔗 ${t.copy}</button>
+    </div></div>
+
+    <div class="stats">
+      <div class="stat"><b>${fmt(g.total)}</b><span>${t.people}</span></div>
+      <div class="stat"><b>${peakYear ?? '—'}</b><span>${t.peakYear}</span></div>
+      <div class="stat"><b>${esc(t.sectors[mainSector] || mainSector)}</b><span>${t.mainCommunity}</span></div>
+      <div class="stat"><b>${fmt(g.spellings.length)}</b><span>${t.spellings}</span></div>
+    </div>
+
+    <section class="card"><h3>${t.labels}</h3>${labelsHtml || `<p class="muted">${t.noLabels}</p>`}</section>
+
+    <section class="card"><h3>${t.perYear}</h3>
+      ${byYear.size ? `<p class="muted" style="margin-top:-6px">${t.peak(peakYear, fmt(byYear.get(peakYear)))}</p><div class="chart">${chartSvg(byYear, peakYear)}</div>` : `<p class="muted">${t.noYearly}</p>`}
+    </section>
+
+    <section class="card"><h3>${t.byCommunity}</h3>
+      ${secRows.map(([sec, v]) => {
+        const tot = v.M + v.F;
+        return `<div class="sector"><span>${esc(t.sectors[sec] || sec)}</span>
+          <div class="track" style="width:${Math.max(2, (tot / secMax) * 100)}%"><div class="m" style="width:${(v.M / tot) * 100}%"></div><div class="f" style="width:${(v.F / tot) * 100}%"></div></div>
+          <span class="muted" style="font-variant-numeric:tabular-nums">${fmt(tot)}</span></div>`;
+      }).join('')}
+      <div class="legend"><span><i style="background:var(--m)"></i>${t.male}</span><span><i style="background:var(--f)"></i>${t.female}</span></div>
+    </section>
+
+    ${g.spellings.length > 1 ? `<section class="card"><h3>${t.spellings} (${g.spellings.length})</h3><div class="spellings">
+      ${g.spellings.map((s) => `<span dir="rtl">${esc(s.name)}<small>${fmt(s.total)}</small></span>`).join('')}</div></section>` : ''}
+
+    ${sim.length ? `<section class="card"><h3>${t.similar} <span class="muted" style="font-size:13px">· ${t.similarSub}</span></h3><div class="similar">
+      ${sim.map((o) => `<a href="#name/${o.id}"><b dir="rtl">${esc(o.main.name)}</b><small dir="ltr">${esc(o.en[0] || '')}</small></a>`).join('')}</div></section>` : ''}
+  </div>`;
+  $('#copy').onclick = async () => {
+    try { await navigator.clipboard.writeText(location.href); toast(t.copied); } catch { toast(location.href); }
+  };
+  $('#view').scrollTop = 0;
+}
+
+let toastTimer;
+function toast(msg) {
+  const el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
+}
+
+// ---------- routing: #name/<id>, #labels/<id,id>, #q/<text> ----------
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  const i = h.indexOf('/');
+  const kind = i < 0 ? h : h.slice(0, i), arg = i < 0 ? '' : h.slice(i + 1);
+  if (kind !== 'q' && $('#q').value) $('#q').value = '';
+  if (kind === 'name') showName(arg);
+  else if (kind === 'labels' || kind === 'label') showLabels(arg.split(','));
+  else if (kind === 'q') showSearch(arg);
+  else showHome();
+}
+
+// ---------- language ----------
+function applyLang() {
+  t = T[lang];
+  nf = new Intl.NumberFormat(t.locale);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = t.dir;
+  document.title = t.title;
+  $('#t-title').textContent = t.title;
+  $('#t-random').textContent = t.random;
+  $('#lang').textContent = t.other;
+  $('#q').placeholder = t.search;
+  $('#lf').placeholder = t.filterLabels;
+}
+
+// ---------- events ----------
+$('#q').addEventListener('input', (e) => {
+  const url = '#q/' + encodeURIComponent(e.target.value);
+  // one history entry while typing, so Back returns to the page before the search
+  if (location.hash.startsWith('#q/')) history.replaceState(null, '', url);
+  else history.pushState(null, '', url);
+  showSearch(e.target.value);
+});
+$('#q').addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { e.target.value = ''; location.hash = ''; e.target.blur(); }
+  if (e.key === 'Enter') { const first = $('#list .row'); if (first) location.hash = first.getAttribute('href'); }
+});
+$('#lf').addEventListener('input', renderSidebar);
+document.addEventListener('keydown', (e) => {
+  if (e.key === '/' && !/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); $('#q').focus(); }
+});
+$('#lang').addEventListener('click', () => { lang = lang === 'he' ? 'en' : 'he'; store.set('lang', lang); applyLang(); if (db.groups.size) route(); });
+$('#random').addEventListener('click', () => {
+  const pool = db.list.filter((g) => g.total >= 200); // skip obscure spellings
+  location.hash = `#name/${pool[Math.floor(Math.random() * pool.length)].id}`;
+});
+window.addEventListener('hashchange', route);
+
+applyLang();
+load()
+  .then(() => { $('#q').disabled = false; $('#random').disabled = false; route(); if (!location.hash) $('#q').focus(); })
+  .catch((err) => {
+    console.error(err);
+    $('#view').innerHTML = `<div class="loading" style="text-align:start"><h2>${t.loadError}</h2><p class="muted">${esc(err.message)}</p>
+      <p>${t.serverHint}</p><pre>python3 -m http.server 8000</pre><p>${t.then} <a href="http://localhost:8000" style="color:var(--accent)">http://localhost:8000</a></p></div>`;
+  });
+</script>
+</body>
+</html>
